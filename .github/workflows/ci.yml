@@ -15,7 +15,7 @@ jobs:
       - name: Build
         run: |
           cd api
-          cargo build --verbose
+          cargo build --release --verbose
       - name: Run tests
         run: |
           cd api
@@ -38,6 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-api, build-web]
     steps:
+      - uses: actions/checkout@v1
       - name: Build Image
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}

@@ -25,6 +25,7 @@ jobs:
           cargo test --verbose
 
   build-web:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v1
         with:

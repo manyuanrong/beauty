@@ -39,10 +39,10 @@ jobs:
     needs: [build-api, build-web]
     steps:
       - name: Build Image
-      env:
-        DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-      - run: |
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASS registry.cn-hongkong.aliyuncs.com
           docker build ./ -t registry.cn-hongkong.aliyuncs.com/enok/beauty
           docker push registry.cn-hongkong.aliyuncs.com/enok/beauty

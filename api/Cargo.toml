@@ -1,5 +1,5 @@
 [package]
-name = "rust-blog"
+name = "beauty"
 version = "0.1.0"
 authors = ["Enok <416828041@qq.com>"]
 edition = "2018"
@@ -8,3 +8,4 @@ edition = "2018"
 
 [dependencies]
 rocket = "0.4.2"
+rocket_contrib = "0.4.2"

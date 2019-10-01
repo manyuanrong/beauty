@@ -1,4 +1,4 @@
-name: CI
+name: Main
 
 on: [push]
 
@@ -20,6 +20,10 @@ jobs:
         run: |
           cd api
           cargo test --verbose
+      - uses: actions/upload-artifact@master
+        with:
+          name: api-server
+          path: api/target/release/beauty
 
   build-web:
     runs-on: ubuntu-latest
@@ -33,12 +37,22 @@ jobs:
           cd web
           yarn
           yarn build
+      - uses: actions/upload-artifact@master
+        with:
+          name: web-dist
+          path: web/dist
 
   publish:
     runs-on: ubuntu-latest
     needs: [build-api, build-web]
     steps:
       - uses: actions/checkout@v1
+      - uses: actions/download-artifact@master
+        with:
+          name: web-dist
+      - uses: actions/download-artifact@master
+        with:
+          name: api-server
       - name: Build Image
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}

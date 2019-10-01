@@ -50,9 +50,11 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: web-dist
+          path: web/dist
       - uses: actions/download-artifact@master
         with:
           name: api-server
+          path: api/target/release/beauty
       - name: Build Image
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}

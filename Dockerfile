@@ -7,4 +7,4 @@ WORKDIR /data
 
 EXPOSE 8000
 
-CMD ["beauty"]
+CMD ["./beauty"]

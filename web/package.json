@@ -6,10 +6,20 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel src/index.html --open",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test"
+    }
   },
   "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "husky": "^3.0.7",
+    "jest": "^24.9.0",
     "parcel-bundler": "^1.12.3",
+    "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
   },
   "dependencies": {

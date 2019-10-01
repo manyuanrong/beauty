@@ -12,6 +12,10 @@ jobs:
         with:
           toolchain: nightly
           override: true
+      - uses: actions/download-artifact@master
+        with:
+          name: api-target
+          path: api/target
       - name: Build
         run: |
           cd api
@@ -22,8 +26,8 @@ jobs:
           cargo test --verbose
       - uses: actions/upload-artifact@master
         with:
-          name: api-server
-          path: api/target/release/beauty
+          name: api-target
+          path: api/target
 
   build-web:
     runs-on: ubuntu-latest
@@ -53,8 +57,8 @@ jobs:
           path: web/dist
       - uses: actions/download-artifact@master
         with:
-          name: api-server
-          path: api/target/release/beauty
+          name: api-target
+          path: api/target
       - name: Build Image
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}

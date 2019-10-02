@@ -11,12 +11,11 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
-          target: x86_64-unknown-linux-musl
           override: true
       - name: Build
         run: |
           cd api
-          cargo build --release --verbose --target x86_64-unknown-linux-musl
+          cargo build --release --verbose
       - name: Run tests
         run: |
           cd api

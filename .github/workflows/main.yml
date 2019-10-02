@@ -54,7 +54,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: api-server
-          path: api/target/reloaese/beauty
+          path: api/target/relaese/beauty
       - name: Build Image
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}

@@ -5,8 +5,8 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
@@ -24,9 +24,19 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/react-in-jsx-scope": 1,
     indent: ["error", 2],
     // "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
     semi: ["error", "always"]
+  },
+  settings: {
+    react: {
+      pragma: "React", // Pragma to use, default to "React"
+      version: "detect", // React version. "detect" automatically picks the version you have installed.
+      flowVersion: "0.53" // Flow version
+    }
   }
 };

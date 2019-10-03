@@ -7,13 +7,13 @@ export default function Nav() {
     <nav className="comp-nav">
       <ul>
         <li>
-          <Link to="/">logo</Link>
+          <Link to="/home">logo</Link>
         </li>
         <li>
           <Link to="/hanfu">汉服</Link>
         </li>
         <li>
-          <Link to="/">唯美</Link>
+          <Link to="/login">唯美</Link>
         </li>
         <li>
           <Link to="/">其他</Link>

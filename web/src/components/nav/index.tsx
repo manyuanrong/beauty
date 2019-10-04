@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./nav.less";
+import "./index.less";
 
 export default function Nav() {
   return (

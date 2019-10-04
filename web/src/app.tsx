@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./common/common.less";
 import "./app.less";
 import Home from "./pages/home";
-import Hanfu from "./pages/hanfu";
+import Hanfu from "./pages/ancient-clothes";
 import Login from "./pages/login";
 
 export default function App() {

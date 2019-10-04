@@ -1,7 +1,7 @@
 import React from "react";
 
-function Hanfu() {
+function AncientClothes() {
   return <div>汉服</div>;
 }
 
-export default Hanfu;
+export default AncientClothes;

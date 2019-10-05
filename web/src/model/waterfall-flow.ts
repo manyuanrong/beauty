@@ -1,6 +1,10 @@
-export interface itemProps {
+export interface ItemProps {
   imgUrl: string;
   title: string;
-  column: number;
-  width: number;
+  column?: number;
+  width?: number;
+}
+
+export interface ColumnProps {
+  list: [];
 }

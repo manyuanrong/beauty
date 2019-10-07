@@ -63,3 +63,15 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASS registry.cn-hongkong.aliyuncs.com
           docker build ./ -t registry.cn-hongkong.aliyuncs.com/enok/beauty
           docker push registry.cn-hongkong.aliyuncs.com/enok/beauty
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [publish]
+    steps:
+      - uses: appleboy/ssh-action@master
+        width:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          password: ${{ secrets.DEPLOY_PASSWORD }}
+          port: 21
+          script: ${{ secrets.DEPLOY_SCRIPT }}

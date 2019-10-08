@@ -4,7 +4,3 @@ export interface ItemProps {
   column?: number;
   width?: number;
 }
-
-export interface ColumnProps {
-  list: [];
-}

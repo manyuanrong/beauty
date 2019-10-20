@@ -2,32 +2,42 @@ import React, { useMemo } from "react";
 import "./index.less";
 import Column from "./column";
 
-interface ItemInfo<T> {
-  data: T;
-  height: number;
-  width: number;
-}
-
 interface WaterfallProps<T> {
   column?: number;
-  list: ItemInfo<T>[];
+  list: T[];
   renderItem: Function;
+}
+
+interface ColumnProps<T> {
+  data: T[];
+  height: number;
 }
 
 export default function WaterfallFlow<T>(props: WaterfallProps<T>) {
   const { column = 2, list } = props;
 
   const columns = useMemo(() => {
-    const arr: T[][] = Array(column)
-      .fill(0)
-      .map(() => {
-        return [];
-      });
+    let arr: ColumnProps<T>[];
+    arr = Array.from({ length: column }, () => {
+      return { data: [], height: 0 };
+    });
 
     if (list.length > 0) {
-      list.forEach((el, index: number) => {
-        const mould = index % column;
-        arr[mould].push(el);
+      list.forEach(item => {
+        // const mould = index % column;
+        const temp = [...arr];
+        const minCol = temp.sort((a, b) => a.height - b.height)[0];
+
+        // console.log(
+        //   666,
+        //   arr[0].height,
+        //   arr[1].height,
+        //   arr[2].height,
+        //   "----",
+        //   item.height
+        // );
+        minCol.data.push(item);
+        minCol.height += item.height / item.width;
       });
     }
 
@@ -39,7 +49,7 @@ export default function WaterfallFlow<T>(props: WaterfallProps<T>) {
       {columns.map((column, index) => {
         return (
           <Column
-            list={column}
+            data={column.data}
             key={index}
             renderItem={props.renderItem}
           ></Column>

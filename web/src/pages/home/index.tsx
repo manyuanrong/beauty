@@ -18,56 +18,59 @@ const fetchList = ({ page = 1, size = 10 }): Promise<ItemProps[]> => {
     resolve([
       {
         id: "1",
-        imgUrl: "http://3770.liulinmall.com/vod/2019-04-03/5ca4d70aa21c0.jpg",
-        title: "猪1"
+        imgUrl: require("./../../static/img/home/1.jpg"),
+        title: "1",
+        width: 650,
+        height: 974
       },
       {
         id: "2",
-        imgUrl: "http://3770.liulinmall.com/vod/2019-04-03/5ca4d70aa21c0.jpg",
-        title: "猪2"
+        imgUrl: require("./../../static/img/home/2.png"),
+        title: "2",
+        width: 200,
+        height: 199
       },
       {
         id: "3",
-        imgUrl: "https://www.jiuwa.net/tuku/20180507/rZTeGIdY.jpg",
-        title: "仓鼠3"
+        imgUrl: require("./../../static/img/home/3.jpg"),
+        title: "3",
+        width: 200,
+        height: 200
       },
       {
         id: "4",
-        imgUrl:
-          "//www.cosplaymore.com/uploadfile/20190708/1562572101444299.jpg",
-        title: "小心心4"
+        imgUrl: require("./../../static/img/home/4.jpg"),
+        title: "4",
+        width: 640,
+        height: 640
       },
       {
         id: "5",
-        imgUrl: "http://3770.liulinmall.com/vod/2019-04-03/5ca4d70aa21c0.jpg",
-        title: "猪5"
+        imgUrl: require("./../../static/img/home/1.jpg"),
+        title: "5",
+        width: 650,
+        height: 974
       },
       {
         id: "6",
-        imgUrl:
-          "//www.cosplaymore.com/uploadfile/20190708/1562572101444299.jpg",
-        title: "仓鼠6"
+        imgUrl: require("./../../static/img/home/2.png"),
+        title: "6",
+        width: 200,
+        height: 199
       },
       {
         id: "7",
-        imgUrl: "https://www.jiuwa.net/tuku/20180507/rZTeGIdY.jpg",
-        title: "仓鼠7"
+        imgUrl: require("./../../static/img/home/3.jpg"),
+        title: "7",
+        width: 200,
+        height: 200
       },
       {
         id: "8",
-        imgUrl: "http://3770.liulinmall.com/vod/2019-04-03/5ca4d70aa21c0.jpg",
-        title: "猪8"
-      },
-      {
-        id: "9",
-        imgUrl: "https://www.jiuwa.net/tuku/20180507/rZTeGIdY.jpg",
-        title: "仓鼠9"
-      },
-      {
-        id: "10",
-        imgUrl:
-          "//www.cosplaymore.com/uploadfile/20190708/1562572101444299.jpg",
-        title: "小心心10"
+        imgUrl: require("./../../static/img/home/4.jpg"),
+        title: "8",
+        width: 640,
+        height: 640
       }
     ])
   );
@@ -80,7 +83,6 @@ function Home() {
   useEffect(() => {
     fetchList({ page }).then(res => setList(res));
   }, [page]);
-  console.log(888, list);
 
   return (
     <div className="page-home">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./index.less";
 import WaterfallFlow from "./../../components/waterfall-flow";
 import { ItemProps } from "../../model/waterfall-flow";
+import { getList } from "../../api/home";
 
 function renderItem(props: ItemProps): React.ReactElement {
   return (
@@ -17,61 +18,11 @@ const fetchList = ({ page = 1, size = 10 }): Promise<ItemProps[]> => {
   return new Promise(resolve =>
     resolve([
       {
-        id: "1",
         imgUrl: require("./../../static/img/home/1.jpg"),
         title: "1",
         width: 650,
         height: 974
       },
-      {
-        id: "2",
-        imgUrl: require("./../../static/img/home/2.png"),
-        title: "2",
-        width: 200,
-        height: 199
-      },
-      {
-        id: "3",
-        imgUrl: require("./../../static/img/home/3.jpg"),
-        title: "3",
-        width: 200,
-        height: 200
-      },
-      {
-        id: "4",
-        imgUrl: require("./../../static/img/home/4.jpg"),
-        title: "4",
-        width: 640,
-        height: 640
-      },
-      {
-        id: "5",
-        imgUrl: require("./../../static/img/home/1.jpg"),
-        title: "5",
-        width: 650,
-        height: 974
-      },
-      {
-        id: "6",
-        imgUrl: require("./../../static/img/home/2.png"),
-        title: "6",
-        width: 200,
-        height: 199
-      },
-      {
-        id: "7",
-        imgUrl: require("./../../static/img/home/3.jpg"),
-        title: "7",
-        width: 200,
-        height: 200
-      },
-      {
-        id: "8",
-        imgUrl: require("./../../static/img/home/4.jpg"),
-        title: "8",
-        width: 640,
-        height: 640
-      }
     ])
   );
 };
@@ -81,7 +32,7 @@ function Home() {
   const [list, setList] = useState<ItemProps[]>([]);
 
   useEffect(() => {
-    fetchList({ page }).then(res => setList(res));
+    getList().then( (res) => setList(res) )
   }, [page]);
 
   return (

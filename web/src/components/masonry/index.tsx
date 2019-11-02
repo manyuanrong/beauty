@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback, useRef, useEffect, MutableRefObject } from "react";
 import "./index.less";
 import Column from "./column";
 
-interface WaterfallProps<T> {
+interface MasonryProps<T> {
   column?: number;
   list: T[];
   renderItem: Function;
@@ -13,7 +13,7 @@ interface ColumnProps<T> {
   height: number;
 }
 
-export default function WaterfallFlow<T>(props: WaterfallProps<T>) {
+export default function Masonry<T>(props: MasonryProps<T>) {
   const { column = 2, list } = props;
 
   const columns = useMemo(() => {
@@ -24,18 +24,10 @@ export default function WaterfallFlow<T>(props: WaterfallProps<T>) {
 
     if (list.length > 0) {
       list.forEach(item => {
-        // const mould = index % column;
+
         const temp = [...arr];
         const minCol = temp.sort((a, b) => a.height - b.height)[0];
 
-        // console.log(
-        //   666,
-        //   arr[0].height,
-        //   arr[1].height,
-        //   arr[2].height,
-        //   "----",
-        //   item.height
-        // );
         minCol.data.push(item);
         minCol.height += item.height / item.width;
       });
@@ -45,7 +37,7 @@ export default function WaterfallFlow<T>(props: WaterfallProps<T>) {
   }, [list]);
 
   return (
-    <div className="waterfall-flow">
+    <div className="masonry">
       {columns.map((column, index) => {
         return (
           <Column

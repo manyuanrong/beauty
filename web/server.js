@@ -10,7 +10,14 @@ const server = new ParcelProxyServer({
             pathRewrite: {
                 "^/api": ""
             }
-        }
+        },
+        // '/assets': {
+        //     target: 'https://c-ssl.duitang.com',
+        //     changeOrigin: true,
+        //     pathRewrite: {
+        //         "^/assets": ""
+        //     }
+        // }
     }
 });
 
@@ -18,6 +25,6 @@ server.bundler.on('buildEnd', () => {
     console.log('Build completed!');
 });
 
-server.listen(2345, () => {
-    console.log("Parcel proxy server has started");
+server.listen(1234, () => {
+    console.log("Parcel proxy server has started: http://127.0.0.1:1234");
 });

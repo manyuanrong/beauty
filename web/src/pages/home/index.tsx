@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import "./index.less";
-import WaterfallFlow from "./../../components/waterfall-flow";
+import Masonry from "./../../components/masonry";
 import { ItemProps } from "../../model/waterfall-flow";
 import { getList } from "../../api/home";
 
@@ -13,31 +13,37 @@ function renderItem(props: ItemProps): React.ReactElement {
   );
 }
 
-const fetchList = ({ page = 1, size = 10 }): Promise<ItemProps[]> => {
-  console.log(111, page, size);
-  return new Promise(resolve =>
-    resolve([
-      {
-        imgUrl: require("./../../static/img/home/1.jpg"),
-        title: "1",
-        width: 650,
-        height: 974
-      },
-    ])
-  );
-};
-
 function Home() {
-  const [page] = useState(1);
+  const [page,setPage] = useState(1);
   const [list, setList] = useState<ItemProps[]>([]);
+  const scrollDom = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback( ( event ) => {
+    console.log(333, event);
+    // console.log('---scroll----', event );
+    // if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+    // console.log('---scroll----next page---',page, page + 1 );
+    // setPage( page + 1 );
+  }, [])
 
   useEffect(() => {
-    getList().then( (res) => setList(res) )
+    console.log(111, scrollDom); 
+    // scrollDom.current.onscoll();
+    scrollDom.current && scrollDom.current.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    getList( page ).then( (res) => setList(res) );
   }, [page]);
 
+  const scroll = useCallback( () => {
+    console.log('---masonry-to-bottom---')
+  }, [])
+
   return (
-    <div className="page-home">
-      <WaterfallFlow column={3} list={list} renderItem={renderItem} />
+    <div className="page-home" onScroll={handleScroll}>
+      <Masonry column={3} list={list} renderItem={renderItem} />
     </div>
   );
 }
